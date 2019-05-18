@@ -1,0 +1,45 @@
+Q1:
+.o files: object files contains compiled object code, with names of functions
+and other object the files contains.
+bst aka a.out: assembiler output, which is an execuetive file.
+
+Q2:
+BSTInt.cpp: In function 'bool insert(int)':
+BSTInt.cpp:25:8: error: 'root' was not declared in this scope
+BSTInt.cpp:27:7: error: 'isize' was not declared in this scope
+that error occurs because insert is not treated as BSTInt member function,
+thus it has no access to the private member of the BSTInt.
+
+Q3: the error is at BSTInt insert method, which it should return false when 
+dulpicate value is being insert.
+
+Q4: At first I tried to setup a for loop to insert distinct values in BST 
+and check its size at each insert, it didn't find the bug. I then proceed 
+to tackle the find method by searching nonexist value inside the BST, which
+is not the bug also. At last before consider checking the tree structure by 
+pointer, I decide to check the return value of new and existed elements and
+be able to locate the bug.
+
+Q5: BSTInt passes arg as value and BST passes arg as object
+because BSTInt already know data in BSTNode are int so inside function they
+can just compare value easily, but BSTNode in BST<Data> could hold elements 
+from different class with different size, thus passing by reference will be
+a much safer way to handle those parameters.
+
+Q6: sorted data will have a higher height because every insert will be skewed
+to the left or to the right, where unsorted will distribute to left and right
+randomly.
+
+Q7: Suppose actors has element of 100, then I will expect sorted has the 
+height of 100-1 = 99, and unsorted one has the height of log_2(100) ~= 6~7
+Result: 
+./main actors100.txt
+Size of tree: 100
+Height of tree: 14
+
+./main actors_sorted.txt
+Size of tree: 11794
+Height of tree: 11793
+
+as expect sorted has the height of n-1 and unsorted one has around 2 times
+of log_2(100) due to the tree not being balanced, which is reasonable.
